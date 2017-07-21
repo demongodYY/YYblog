@@ -1,16 +1,16 @@
 <template>
-    <el-row class="tac">
-        <el-col :span="6">
-            <el-menu default-active="-1">
+    <el-row class="continer">
+        <el-col class="menu-vertical" :xs="7" :sm="4" :md="4" :lg="3">
+            <el-menu  default-active="-1">
                 <el-menu-item index="-1">自己</el-menu-item>
                 <el-menu-item v-for="(user, index) in userList" :key="user.id" :index="''+index">{{ user.name }}</el-menu-item>
             </el-menu>
         </el-col>
-        <el-col :span="18">
-                <el-tabs>
+        <el-col class="content" :xs="17" :sm="20" :md="20" :lg="21">
+                <el-tabs >
                     <el-tab-pane v-for="(subject, index) in subjectList"  :key="index" :name="''+index" :label="subject">
                         <el-table 
-                            :data="postList.filter((post) =>{
+                            :data="postList.filter((post) => {
                                 return (post.subject === subject)
                             } )" 
                             stripe 
@@ -78,7 +78,15 @@
     };
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+    .continer
+        
+        height:100%
+    .menu-vertical
+        height:100%
+    .el-menu
+        height :100%
+    .content
+        padding 2%
 </style>
 

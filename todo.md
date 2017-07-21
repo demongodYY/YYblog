@@ -1,6 +1,8 @@
 # done
 - 建立了工程，用vue2+koa2+mongodb架构
 - 完成了前端login, postlist 的静态页面
+- 大致设置了postlist页面的样式
+- 添加了header组件
 
 # todo right now
 - 完成post detail 静态页面
