@@ -26,6 +26,7 @@
 
 <script>
     export default {
+        name: 'Post',
         data () {
             return {
                 userList: [

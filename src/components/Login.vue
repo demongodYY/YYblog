@@ -15,7 +15,7 @@
                     placeholder="密码"
                     type="password">
                 </el-input>
-                <el-button type="primary">登陆</el-button>
+                <el-button type="primary" @click="handleSubmit">登陆</el-button>
             </el-row>
         </el-col>
     </el-row>
@@ -23,11 +23,17 @@
 
 <script>
 export default {
+    name: 'Login',
     data () {
         return {
             account: '',
             password: ''
         };
+    },
+    methods: {
+        handleSubmit () {
+            this.$router.push('/post');
+        }
     }
 };
 </script>
