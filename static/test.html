@@ -1,0 +1,25 @@
+<head>
+    <script  src="./bomb-js1.1.7/bmob-min.js"></script>    
+</head>
+<body>
+    <script>
+        Bmob.initialize("3f032a5a2a2d06253405d13eb75d1e71", "277254701593998568aff4a0692ed927");
+        var user = new Bmob.User();
+        user.set("username", "test");
+        user.set("password", "123456");
+        user.set("email", "email@example.com");
+        
+        // other fields can be set just like with Bmob.Object
+        user.set("phone", "415-392-0202");
+        
+        user.signUp(null, {
+          success: function(user) {
+            // Hooray! Let them use the app now.
+          },
+          error: function(user, error) {
+            // Show the error message somewhere and let the user try again.
+            alert("Error: " + error.code + " " + error.message);
+          }
+        });
+    </script>
+</body>

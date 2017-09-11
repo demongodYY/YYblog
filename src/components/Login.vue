@@ -6,8 +6,8 @@
             </span>
             <el-row>
                 <el-input
-                    v-model="account"
-                    placeholder="账号"
+                    v-model="username"
+                    placeholder="用户名"
                     type="text">
                 </el-input>
                 <el-input
@@ -15,38 +15,69 @@
                     placeholder="密码"
                     type="password">
                 </el-input>
-                <el-button type="primary" @click="handleSubmit">登陆</el-button>
+                <el-button type="primary" @click="handleSignIn">登陆</el-button>
+                <el-button type="primary" @click="handleSignUp">注册</el-button>
             </el-row>
         </el-col>
     </el-row>
 </template>
 
 <script>
-export default {
-    name: 'Login',
-    data () {
-        return {
-            account: '',
-            password: ''
-        };
-    },
-    methods: {
-        handleSubmit () {
-            this.$router.push('/post');
+    export default {
+        name: 'Login',
+        data () {
+            return {
+                username: '',
+                password: ''
+            };
+        },
+        methods: {
+            handleSignIn () {
+                this.$kinvey.User.login({
+                    username: this.username,
+                    password: this.password
+                })
+                .then(res => {
+                    this.$router.replace('/post');
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            },
+            handleSignUp () {
+                const user = new this.$kinvey.User();
+                user.signup({
+                    username: '测试',
+                    password: '123456',
+                    email: 'test@test.com'
+                }).then(user => {
+                    this.$router.replace('/post');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }
+        },
+        mounted () {
+            const activeUser = this.$kinvey.User.getActiveUser();
+            if (activeUser !== null) {
+                this.$router.replace('/post');
+            }
         }
-    }
-};
+    };
 </script>
 
 <style lang="stylus" scoped>
     .el-row.content
-        padding 16px
-    .title
-        font-size 28px
+        padding 1rem
+    span.title
+        font-size 1.5rem
     .el-input
-        margin 12px 0
+        margin 1rem 0
     .el-button
         widows 100%
-        margin-top 12px
+        margin-top 1rem
+    .content
+        margin-top 5%
 </style>
 

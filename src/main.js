@@ -5,7 +5,15 @@ import App from './App';
 import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
+import Kinvey from 'kinvey-html5-sdk';
 
+const AppKey = 'kid_BJVrF0RKW';
+const AppSecret = '4cac002c973f44278b1c42787f3c8893';
+Kinvey.init({
+    appKey: AppKey,
+    appSecret: AppSecret
+});
+Vue.prototype.$kinvey = Kinvey;
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);

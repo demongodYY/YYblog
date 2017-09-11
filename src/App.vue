@@ -11,6 +11,12 @@
         name: 'app',
         components: {
             BlogHeader
+        },
+        mounted () {
+            const activeUser = this.$kinvey.User.getActiveUser();
+            if (!activeUser) {
+                this.$router.replace('/');
+            }
         }
     };
 </script>

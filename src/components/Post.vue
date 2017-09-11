@@ -14,6 +14,8 @@
                                 return (post.subject === subject)
                             } )" 
                             stripe 
+                            :row-key="postList.id"
+                            @row-click = "console.log(this.row-key)"
                             style="width: 100%">
                             <el-table-column prop="title" label="标题" min-width="6"></el-table-column>
                             <el-table-column prop="time" label="时间" min-width="4"></el-table-column>
@@ -50,25 +52,25 @@
                 ],
                 postList: [
                     {
-                        id: 1,
+                        id: '1',
                         title: '人生啊,老是白金',
                         time: '2017-7-18',
                         subject: '生活'
                     },
                     {
-                        id: 2,
+                        id: '2',
                         title: '人生啊,钻石徘徊',
                         time: '2017-7-19',
                         subject: '生活'
                     },
                     {
-                        id: 3,
+                        id: '3',
                         title: '人生啊,上不了王者',
                         time: '2017-7-19',
                         subject: '情感'
                     },
                     {
-                        id: 4,
+                        id: '4',
                         title: '人生啊,上王者！',
                         time: '2017-7-19',
                         subject: '运动'
@@ -81,7 +83,6 @@
 
 <style lang="stylus" scoped>
     .continer
-        
         height:100%
     .menu-vertical
         height:100%
