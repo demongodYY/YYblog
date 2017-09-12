@@ -58,7 +58,6 @@
                 };
                 articles.save(article)
                 .then((res) => {
-                    console.log(res);
                     this.$router.push({path: 'article', query: { id: res._id }});
                 })
                 .catch((err) => {

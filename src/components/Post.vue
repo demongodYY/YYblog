@@ -11,22 +11,18 @@
                     <el-tab-pane v-for="(subject, index) in subjectList"  :key="index" :name="''+index" :label="subject">
                         <el-table
                             :data="postList.filter((post) => {
-                                return (post.subject === subject)
+                                return (post.type === subject)
                             })"
                             stripe
+                            :show-header = "false"
                             :row-key="postList.id"
+                            @current-change="handleCurrentChange"
                             style="width: 100%">
-                            <el-table-column  label="时间" width="150">
+                            <el-table-column >
                               <template scope="scope">
                                 <el-icon name="time"></el-icon>
-                                <span style="margin-left: 10px">{{ scope.row.time }}</span>
-                              </template>
-                            </el-table-column>
-                            <el-table-column  label="标题" >
-                              <template scope="scope">
-                                <router-link :to="`/article?${ scope.row.id }`">
-                                  {{ scope.row.title }}
-                                </router-link>
+                                <span class="listTime">{{ scope.row.time }}</span>
+                                <span class="listTitle">{{ scope.row.title }}</span>
                               </template>
                             </el-table-column>
 
@@ -42,35 +38,41 @@
         name: 'Post',
         data () {
             return {
+                userId: '59b21e3c8be17b6304398e51',
                 userList: [
                     {
                         id: 1,
                         name: '张三'
                     }
                 ],
-                subjectList: [
-                    '生活',
-                    '情感',
-                    '运动'
-                ],
-                postList: [
-                    {
-                        id: '1',
-                        title: '人生啊,老是白金',
-                        time: '2017-7-18',
-                        subject: '生活'
-                    }
-                ]
+                subjectList: [],
+                postList: []
             };
         },
         methods: {
             listArticle () {
-                const userId = '59b21e3c8be17b6304398e51';
-                const query = this.$kinvey.Query();
-                query.equelTo('creator', userId);
+                const userId = this.userId;
+                const query = new this.$kinvey.Query();
+                query.equalTo('_acl.creator', userId);
+                query.fields = ['_id', 'title', 'type'];
                 const dataStore = this.$kinvey.DataStore.collection('articles');
-                dataStore.find(query).subscribe();
+                dataStore.find(query).subscribe((res) => {
+                    for (let val of res) {
+                        if (this.subjectList.indexOf(val.type) === -1) {
+                            this.subjectList.push(val.type);
+                        }
+                    }
+                    this.postList = res;
+                }, (err) => {
+                    console.log(err);
+                });
+            },
+            handleCurrentChange (val) {
+                this.$router.push({path: 'article', query: {id: val._id}});
             }
+        },
+        mounted () {
+            this.listArticle();
         }
     };
 </script>

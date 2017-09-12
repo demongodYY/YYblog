@@ -41,6 +41,7 @@
             const stream = dataStore.findById(this.ctxId);
             stream.subscribe((res) => {
                 if (res) {
+                    console.log(res);
                     this.title = res.title;
                     this.ctx = res.content;
                     this.type = res.type;
