@@ -3,10 +3,13 @@
 - 完成了前端login, postlist 的静态页面
 - 大致设置了postlist页面的样式
 - 添加了header组件
-
-# todo right now
 - 完成post detail 静态页面
 - 实现不同user之间的跳转
+
+# todo right now
+- 文章发布时获取作者信息,或者根据"creator == user_id"查找
+- 获取文章下载的格式
+
 
 # todo
 - 建立博客后台逻辑，构建数据库

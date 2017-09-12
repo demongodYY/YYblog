@@ -9,16 +9,27 @@
         <el-col class="content" :xs="17" :sm="20" :md="20" :lg="21">
                 <el-tabs >
                     <el-tab-pane v-for="(subject, index) in subjectList"  :key="index" :name="''+index" :label="subject">
-                        <el-table 
+                        <el-table
                             :data="postList.filter((post) => {
                                 return (post.subject === subject)
-                            } )" 
-                            stripe 
+                            })"
+                            stripe
                             :row-key="postList.id"
-                            @row-click = "console.log(this.row-key)"
                             style="width: 100%">
-                            <el-table-column prop="title" label="标题" min-width="6"></el-table-column>
-                            <el-table-column prop="time" label="时间" min-width="4"></el-table-column>
+                            <el-table-column  label="时间" width="150">
+                              <template scope="scope">
+                                <el-icon name="time"></el-icon>
+                                <span style="margin-left: 10px">{{ scope.row.time }}</span>
+                              </template>
+                            </el-table-column>
+                            <el-table-column  label="标题" >
+                              <template scope="scope">
+                                <router-link :to="`/article?${ scope.row.id }`">
+                                  {{ scope.row.title }}
+                                </router-link>
+                              </template>
+                            </el-table-column>
+
                         </el-table>
                     </el-tab-pane>
                 </el-tabs>
@@ -35,14 +46,6 @@
                     {
                         id: 1,
                         name: '张三'
-                    },
-                    {
-                        id: 2,
-                        name: '李四'
-                    },
-                    {
-                        id: 3,
-                        name: '王二麻子'
                     }
                 ],
                 subjectList: [
@@ -56,27 +59,18 @@
                         title: '人生啊,老是白金',
                         time: '2017-7-18',
                         subject: '生活'
-                    },
-                    {
-                        id: '2',
-                        title: '人生啊,钻石徘徊',
-                        time: '2017-7-19',
-                        subject: '生活'
-                    },
-                    {
-                        id: '3',
-                        title: '人生啊,上不了王者',
-                        time: '2017-7-19',
-                        subject: '情感'
-                    },
-                    {
-                        id: '4',
-                        title: '人生啊,上王者！',
-                        time: '2017-7-19',
-                        subject: '运动'
                     }
                 ]
             };
+        },
+        methods: {
+            listArticle () {
+                const userId = '59b21e3c8be17b6304398e51';
+                const query = this.$kinvey.Query();
+                query.equelTo('creator', userId);
+                const dataStore = this.$kinvey.DataStore.collection('articles');
+                dataStore.find(query).subscribe();
+            }
         }
     };
 </script>

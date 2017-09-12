@@ -26,7 +26,7 @@
                 ctx: {},
                 quill: {},
                 type: '',
-                ctxId: '59b64a78dfab745404780218'
+                ctxId: ''
             };
         },
         methods: {
@@ -40,10 +40,14 @@
             });
             const stream = dataStore.findById(this.ctxId);
             stream.subscribe((res) => {
-                this.title = res.title;
-                this.ctx = res.content;
-                this.type = res.type;
-                this.quill.setContents(this.ctx);
+                if (res) {
+                    this.title = res.title;
+                    this.ctx = res.content;
+                    this.type = res.type;
+                    this.quill.setContents(this.ctx);
+                } else {
+                    console.log('can not find article');
+                }
             }, (err) => {
                 console.log(err);
             });
@@ -62,7 +66,7 @@
         margin: 0 20%;
     }
     .ql-toolbar {
-        
+
     }
     .ql-editor{
         background-color: #FAFAFA;
