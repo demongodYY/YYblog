@@ -49,7 +49,8 @@
                 user.signup({
                     username: '测试',
                     password: '123456',
-                    email: 'test@test.com'
+                    email: 'test@test.com',
+                    first_name: 'public'
                 }).then(user => {
                     this.$router.replace('/post');
                 })
