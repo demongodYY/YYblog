@@ -1,7 +1,9 @@
-# vue-blog
+# YYblog
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=YYblog)]()
+[![node](https://img.shields.io/node/v/gh-badges.svg)]()
+[![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)]()
 
-> my blog(vue2+koa2+mongodb)
-
+一个简单的博客系统(vue2+kinvey+element+quill)
 ## Build Setup
 
 ``` bash
@@ -18,8 +20,13 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 ## study website
+http://element.eleme.io/#/zh-CN/guide/design
+
+https://devcenter.kinvey.com/html5
+
 https://molunerfinn.com/Vue+Koa/
+
+https://cn.vuejs.org/index.html
+
 https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001471087582981d6c0ea265bf241b59a04fa6f61d767f6000
