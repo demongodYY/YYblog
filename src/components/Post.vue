@@ -8,7 +8,8 @@
             </el-menu>
         </el-col>
         <el-col class="content" :xs="17" :sm="20" :md="20" :lg="21">
-                <el-tabs >
+                <h2 v-if = "postList.length === 0">哎啊,还没写文章呢!</h2>
+                <el-tabs v-else>
                     <el-tab-pane v-for="(subject, index) in subjectList"  :key="index" :name="''+index" :label="subject">
                         <el-table
                             :data="postList.filter((post) => {
@@ -26,7 +27,6 @@
                                 <span class="listTitle">{{ scope.row.title }}</span>
                               </template>
                             </el-table-column>
-
                         </el-table>
                     </el-tab-pane>
                 </el-tabs>

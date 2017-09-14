@@ -21,7 +21,6 @@
               <el-button class="headerBtn"  type="text" size="large" @click = "handleLogout" icon="close"></el-button>
             </el-tooltip>
         </el-row>
-
     </header>
 </template>
 
