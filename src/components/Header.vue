@@ -2,16 +2,24 @@
     <header>
         <el-row class="continer" type="flex" align="middle" :gutter="70">
              <el-col :xs="5" :sm="3" :md="2" :lg="1">
-                <!--<img src="../assets/logo.png"/>-->
                 <avatar class = "imgAvatar" :username="username" ></avatar>
             </el-col>
             <el-col>
                 <h2>{{ username }}'s Blog</h2>
             </el-col>
-            <router-link to="/editor">
-              <el-button class="headerBtn"  style="float: right;" type="text" icon="edit"></el-button>
+            <router-link to="/">
+              <el-tooltip class="item" effect="dark" content="回到首页" placement="bottom-start">
+                <el-button class="headerBtn"  style="float: right;" type="text" icon="caret-left"></el-button>
+              </el-tooltip>
             </router-link>
-            <el-button class="headerBtn"  type="text" size="large" @click = "handleLogout">注销</el-button>
+            <router-link to="/editor">
+              <el-tooltip class="item" effect="dark" content="写新文章" placement="bottom-start">
+                <el-button class="headerBtn"  style="float: right;" type="text" icon="edit"></el-button>
+              </el-tooltip>
+            </router-link>
+            <el-tooltip class="item" effect="dark" content="注销" placement="bottom-start">
+              <el-button class="headerBtn"  type="text" size="large" @click = "handleLogout" icon="close"></el-button>
+            </el-tooltip>
         </el-row>
 
     </header>
