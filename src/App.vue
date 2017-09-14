@@ -1,20 +1,15 @@
 <template>
   <div id="app">
-    <blog-header></blog-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-    import BlogHeader from '@/components/Header';
     export default {
         name: 'app',
-        components: {
-            BlogHeader
-        },
-        mounted () {
+        beforeCreate () {
             const activeUser = this.$kinvey.User.getActiveUser();
-            if (!activeUser) {
+            if (!activeUser || !this.$store.state.activeUser) {
                 this.$router.replace('/');
             }
         }

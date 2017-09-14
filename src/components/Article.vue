@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <blog-header></blog-header>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span class="title">

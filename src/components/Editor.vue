@@ -1,5 +1,7 @@
 <template>
+
     <div class="container">
+        <blog-header></blog-header>
         <el-input class="title-input" v-model="title" placeholder="请输入标题" >
               <el-select
                 v-model="type"
@@ -25,23 +27,23 @@
     import Quill from 'quill';
     import 'quill/dist/quill.core.css';
     import 'quill/dist/quill.snow.css';
+
     export default {
         data () {
             return {
                 title: '',
                 ctx: {},
                 quill: {},
-                types: [
-                    {
-                        value: '情感',
-                        label: '情感'
-                    }, {
-                        value: '生活',
-                        label: '生活'
-                    }, {
-                        value: '运动',
-                        label: '运动'
-                    }],
+                types: [{
+                    value: '情感',
+                    label: '情感'
+                }, {
+                    value: '生活',
+                    label: '生活'
+                }, {
+                    value: '运动',
+                    label: '运动'
+                }],
                 type: ''
             };
         },

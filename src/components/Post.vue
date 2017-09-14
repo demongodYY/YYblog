@@ -1,8 +1,9 @@
 <template>
     <el-row class="continer">
+        <blog-header></blog-header>
         <el-col class="menu-vertical" :xs="7" :sm="4" :md="4" :lg="3">
             <el-menu  default-active="-1">
-                <el-menu-item index="-1">自己</el-menu-item>
+                <el-menu-item index="-1" @click="handleUserChange($store.state.activeUser._id)">自己</el-menu-item>
                 <el-menu-item v-for="(user, index) in userList" :key="user._id" :index="''+index" @click="handleUserChange(user._id)">{{ user.username }}</el-menu-item>
             </el-menu>
         </el-col>
@@ -38,7 +39,7 @@
         name: 'Post',
         data () {
             return {
-                userId: '59b21e3c8be17b6304398e51',
+                userId: '',
                 userList: [
                 ],
                 subjectList: [],
@@ -53,11 +54,14 @@
                 query.fields = ['_id', 'title', 'type'];
                 const dataStore = this.$kinvey.DataStore.collection('articles');
                 dataStore.find(query).subscribe((res) => {
+                    let subjectList = [];
                     for (let val of res) {
-                        if (this.subjectList.indexOf(val.type) === -1) {
-                            this.subjectList.push(val.type);
+                        val.type = (val.type === '' ? val.type = '未分类' : val.type);
+                        if (subjectList.indexOf(val.type) === -1) {
+                            subjectList.push(val.type);
                         }
                     }
+                    this.subjectList = subjectList;
                     this.postList = res;
                 }, (err) => {
                     console.log(err);
@@ -67,8 +71,7 @@
                 const query = new this.$kinvey.Query();
                 query.equalTo('first_name', 'public');
                 this.$kinvey.User.lookup(query).subscribe((users) => {
-                    console.log(users);
-                    this.userList = users;
+                    this.userList = users.filter(user => user._id !== this.$store.state.activeUser._id);
                 }, (err) => {
                     console.log(err);
                 });
@@ -82,6 +85,9 @@
             }
         },
         mounted () {
+            if (this.$store.state.activeUser) {
+                this.userId = this.$store.state.activeUser._id;
+            }
             this.listUser();
             this.listArticle();
         }

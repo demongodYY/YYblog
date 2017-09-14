@@ -37,7 +37,8 @@
                     username: this.username,
                     password: this.password
                 })
-                .then(res => {
+                .then(activeUser => {
+                    this.$store.commit('getActiveUser', activeUser);
                     this.$router.replace('/post');
                 })
                 .catch(err => {
@@ -51,7 +52,8 @@
                     password: '123456',
                     email: 'test@test.com',
                     first_name: 'public'
-                }).then(user => {
+                }).then(activeUser => {
+                    this.$store.commit('getActiveUser', activeUser);
                     this.$router.replace('/post');
                 })
                 .catch(error => {
@@ -62,6 +64,7 @@
         mounted () {
             const activeUser = this.$kinvey.User.getActiveUser();
             if (activeUser !== null) {
+                this.$store.commit('getActiveUser', activeUser);
                 this.$router.replace('/post');
             }
         }
