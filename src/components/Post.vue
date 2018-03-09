@@ -65,6 +65,7 @@
                     this.postList = res;
                 }, (err) => {
                     console.log(err);
+                    console.log('nono');
                 });
             },
             listUser () {

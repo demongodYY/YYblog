@@ -6,7 +6,7 @@ import App from './App';
 import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
-import Kinvey from 'kinvey-html5-sdk';
+import { Kinvey } from 'kinvey-html5-sdk';
 import store from './store';
 
 const AppKey = 'kid_BJVrF0RKW';
