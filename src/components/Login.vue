@@ -77,7 +77,7 @@
                 })
                 .then(activeUser => {
                     this.$store.commit('getActiveUser', activeUser);
-                    this.$router.replace('/post');
+                    this.$router.replace('/editor');
                 })
                 .catch(err => {
                     console.log(err);

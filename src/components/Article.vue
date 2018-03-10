@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <blog-header></blog-header>
+        <!-- <blog-header></blog-header> -->
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span class="title">
                     {{ title }}
                 </span>
-                <el-button style="float: right;" size="large" slot="append" icon="edit"></el-button>
+                <!-- <el-button style="float: right;" size="large" slot="append" icon="edit"></el-button> -->
             </div>
             <div class="text item">
                 <div id="editor">
