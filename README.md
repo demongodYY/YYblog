@@ -4,6 +4,8 @@
 [![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)]()
 
 一个简单的博客系统(vue2+kinvey+element+quill)
+
+[服务器端暂未完成，目前利用kinvey部署在github page上]
 ## Build Setup
 
 ``` bash

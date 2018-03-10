@@ -90,15 +90,6 @@
             }
         },
         mounted () {
-            if (!this.$store.state.activeUser) {
-                this.$kinvey.User.login({
-                    username: 'guest',
-                    password: 'guest'
-                })
-                .then(activeUser => {
-                    this.$store.commit('getActiveUser', activeUser);
-                });
-            }
             // this.listUser();
             this.listArticle();
         }

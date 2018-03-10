@@ -10,7 +10,18 @@
         beforeCreate () {
             const activeUser = this.$kinvey.User.getActiveUser();
             if (!activeUser || !this.$store.state.activeUser) {
-                this.$router.replace('/');
+                console.log('no login');
+                this.$kinvey.User.login({
+                    username: 'guest',
+                    password: 'guest'
+                })
+                .then(user => {
+                    console.log('login!');
+                    this.$store.commit('getActiveUser', user);
+                    // this.$root.reload();
+                    window.location.reload();
+                    // this.$router.replace({ path: '/', query: { user: 'guest' } });
+                });
             }
         }
     };
