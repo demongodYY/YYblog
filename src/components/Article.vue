@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- <blog-header></blog-header> -->
-        <el-card class="box-card">
+        <el-card class="box-card" v-loading="loading">
             <div slot="header" class="clearfix">
                 <span class="title">
                     {{ title }}
@@ -27,7 +27,8 @@
                 ctx: {},
                 quill: {},
                 type: '',
-                ctxId: ''
+                ctxId: '',
+                loading: true
             };
         },
         methods: {
@@ -42,11 +43,11 @@
             const stream = dataStore.findById(this.ctxId);
             stream.subscribe((res) => {
                 if (res) {
-                    console.log(res);
                     this.title = res.title;
                     this.ctx = res.content;
                     this.type = res.type;
                     this.quill.setContents(this.ctx);
+                    this.loading = false;
                 } else {
                     console.log('can not find article');
                 }

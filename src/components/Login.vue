@@ -101,7 +101,6 @@
                     });
                 })
                 .catch(error => {
-                    console.log(error);
                     this.alertError(error.code);
                 });
             }

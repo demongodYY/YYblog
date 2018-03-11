@@ -28,7 +28,7 @@
   import Avatar from 'vue-avatar';
 
   export default {
-      name: 'header',
+      name: 'blog-header',
       components: {
           'avatar': Avatar
       },

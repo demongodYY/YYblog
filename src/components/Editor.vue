@@ -3,7 +3,10 @@
     <div class="container">
         <blog-header></blog-header>
         <el-input class="title-input" v-model="title" placeholder="请输入标题" >
-              <el-select
+
+            
+        </el-input>
+                      <el-select
                 v-model="type"
                 slot="prepend"
                 filterable=""
@@ -16,8 +19,7 @@
                 :value="item.value">
                 </el-option>
             </el-select>
-             <el-button size="large" slot="append" icon="upload" @click="handleCommitCtx"></el-button>
-        </el-input>
+         <el-button size="large" slot="append" icon="upload" @click="handleCommitCtx"></el-button>
         <div id="editor">
         </div>
     </div>
